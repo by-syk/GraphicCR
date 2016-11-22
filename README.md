@@ -5,8 +5,8 @@
 
 | 类型 | 图形 | 来源 | 识别正确率 |
 | :--- | :--- | :--- | :---: |
-| 第1类 | [![neuq](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS) | [东北大学秦皇岛分校教务管理系统](http://jwpt.neuq.edu.cn)] | 100% |
-| 第2类 | [![cmc](http://222.197.143.7/CheckCode.aspx)] | [成都医学院教务管理系统](http://222.197.143.7) | TODO |
+| 第1类 | [![neuq](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS)](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS) | [东北大学秦皇岛分校教务管理系统](http://jwpt.neuq.edu.cn) | 100% |
+| 第2类 | [![cmc]](http://222.197.143.7/CheckCode.aspx) | [成都医学院教务管理系统](http://222.197.143.7) | TODO |
 
 图形样本特征分析：
 * 第1类
