@@ -7,19 +7,25 @@
 | :--- | :--- | :--- | :--- |
 | 第1类 | [![neuq](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS)](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS) | [东北大学秦皇岛分校教务管理系统](http://jwpt.neuq.edu.cn) | 10 / 10 = **100%**，单：40 / 40 = 100% |
 | 第2类 | [![cmc](http://222.197.143.7/CheckCode.aspx)](http://222.197.143.7/CheckCode.aspx) | [成都医学院教务管理系统](http://222.197.143.7) | 74 / 100 = **74%**，单：372 / 400 = 93% |
+| 第3类 | [![bbmc](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx)](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx) | [蚌埠医学院教务网络管理系统](http://211.70.128.23/JWWEB/) | TODO |
 
 图形样本特征分析：
 * 第1类  
 :smile: 字符数固定  
-:smile: 位置基本固定，每个字符具有1~3像素的水平偏移  
 :smile: 字符亮度一致，阀值 `0.6`  
+:smile: 位置基本固定，每个字符具有1~3像素的水平偏移  
 ![graphicc1](art/ps_graphicc1.png)
 * 第2类  
 :smile: 字符数固定  
-:smile: 位置基本固定，字符间有1像素交集  
 :smile: 字符颜色固定，色值 `#ff000099`  
+:smile: 位置基本固定，字符间水平有1像素交集  
 :persevere: 字符有旋转  
-![graphicc1](art/ps_graphicc2.png)
+![graphicc2](art/ps_graphicc2.png)
+* 第3类  
+:smile: 字符数固定  
+:smile: 字符饱和度一致，阀值`0.2`  
+:persevere: 位置水平基本固定、垂直漂移  
+![graphicc3](art/ps_graphicc3.png)
 
 
 ### 开始使用
