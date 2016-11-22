@@ -21,9 +21,27 @@ import java.io.File;
 import com.by_syk.graphiccr.util.ExtraUtil;
 
 public class GraphicCTranslator {
+    /**
+     * 第1类图形验证码识别
+     * <br />针对截至 2016-11-22 为止东北大学秦皇岛分校教务系统登录用的验证码
+     * <br />图形尺寸为 60*20
+     */
     public static final int TYPE_1 = 1;
+    
+    /**
+     * 第2类图形验证码识别
+     * <br />针对截至 2016-11-22 为止成都医学院教务系统登录用的验证码
+     * <br />图形尺寸为 72*27
+     */
     public static final int TYPE_2 = 2;
     
+    /**
+     * 识别指定文件的图形验证码
+     * 
+     * @param picFile
+     * @param type
+     * @return
+     */
     public static String translate(File picFile, int type) {
         switch (type) {
         case TYPE_1:
@@ -34,6 +52,13 @@ public class GraphicCTranslator {
         return "";
     }
     
+    /**
+     * 识别指定文件的图形验证码
+     * 
+     * @param picPath
+     * @param type
+     * @return
+     */
     public static String translate(String picPath, int type) {
         if (picPath == null) {
             return "";
@@ -41,6 +66,14 @@ public class GraphicCTranslator {
         return translate(new File(picPath), type);
     }
     
+    /**
+     * 识别指定链接的图形验证码
+     * 
+     * @param urlStr
+     * @param cacheFile
+     * @param type
+     * @return
+     */
     public static String translate(String urlStr, File cacheFile, int type) {
         if (urlStr == null) {
             return "";

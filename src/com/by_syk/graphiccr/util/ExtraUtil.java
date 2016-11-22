@@ -40,6 +40,7 @@ public class ExtraUtil {
             while ((len = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, len);
             }
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

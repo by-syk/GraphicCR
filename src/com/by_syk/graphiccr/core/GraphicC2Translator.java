@@ -27,19 +27,44 @@ import javax.imageio.ImageIO;
 
 /**
  * 第2类图形验证码识别
+ * <br />针对截至 2016-11-22 为止成都医学院教务系统登录用的验证码
+ * <br />图形尺寸为 72*27
  * 
  * @author By_syk
  */
 public class GraphicC2Translator {
     private static GraphicC2Translator translator = null;
     
+    /**
+     * 元字符宽度
+     */
     private static final int UNIT_W = 13;
+    
+    /**
+     * 元字符高度
+     */
     private static final int UNIT_H = 22;
+    
+    /**
+     * 训练元字符数
+     */
     private static final int TRAIN_NUM = 32;
+    
+    /**
+     * 所有元字符
+     */
     private static final char[] TRAIN_CHARS = {'0', '1', '2', '3', '4', '5', '6', '7', '8',/* '9',*/
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
             /*'o', */'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y'/*, 'z'*/};
+    
+    /**
+     * 有效像素颜色值
+     */
     private static final int TARGET_COLOR = Color.BLACK.getRGB();
+    
+    /**
+     * 无效像素颜色值
+     */
     private static final int USELESS_COLOR = Color.WHITE.getRGB();
     
     private GraphicC2Translator() {}
@@ -54,6 +79,10 @@ public class GraphicC2Translator {
     
     /**
      * 去噪
+     * 
+     * @param picFile 图形验证码文件
+     * @return
+     * @throws Exception
      */
     private BufferedImage denoise(File picFile) throws Exception {
         BufferedImage img = ImageIO.read(picFile);
@@ -74,6 +103,10 @@ public class GraphicC2Translator {
 
     /**
      * 分割元字符
+     * 
+     * @param img
+     * @return
+     * @throws Exception
      */
     private static List<BufferedImage> split(BufferedImage img) throws Exception {
         List<BufferedImage> subImgs = new ArrayList<BufferedImage>();
@@ -86,6 +119,9 @@ public class GraphicC2Translator {
 
     /**
      * 取出训练数据
+     * 
+     * @return
+     * @throws Exception
      */
     private BufferedImage loadTrainData() throws Exception {
 //        File file = new File(this.getClass().getResource("/resources/img/2/train.gif").getPath());
@@ -94,6 +130,14 @@ public class GraphicC2Translator {
       return ImageIO.read(this.getClass().getResourceAsStream("/resources/img/2/train.gif"));
     }
 
+    /**
+     * 将训练元字符装在一起
+     * 
+     * @param trainImg
+     * @param smallImg
+     * @param ch
+     * @return
+     */
     private boolean addTrainImg(BufferedImage trainImg, BufferedImage smallImg, char ch) {
         int which = Arrays.binarySearch(TRAIN_CHARS, ch);
         int x = -1;
@@ -121,6 +165,10 @@ public class GraphicC2Translator {
 
     /**
      * 训练
+     * 
+     * @param rawDir
+     * @param targetTrainFile
+     * @return
      */
     public boolean train(File rawDir, File targetTrainFile) {
         try {
@@ -143,8 +191,12 @@ public class GraphicC2Translator {
 
     /**
      * 单元识别
+     * 
+     * @param img
+     * @param trainImg
+     * @return
      */
-    private char getSingleCharOcr(BufferedImage img, BufferedImage trainImg) {
+    private char recognize(BufferedImage img, BufferedImage trainImg) {
         char result = ' ';
         int width = img.getWidth();
         int height = img.getHeight();
@@ -176,16 +228,19 @@ public class GraphicC2Translator {
     }
 
     /**
-     * 图形验证码识别
+     * 识别
+     * 
+     * @param picFile 图形验证码文件
+     * @return
      */
-    public String translate(File file) {
+    public String translate(File picFile) {
         String result = "";
         try {
-            BufferedImage img = denoise(file);
+            BufferedImage img = denoise(picFile);
             List<BufferedImage> listImg = split(img);
             BufferedImage trainImg = loadTrainData();
             for (BufferedImage bi : listImg) {
-                result += getSingleCharOcr(bi, trainImg);
+                result += recognize(bi, trainImg);
             }
         } catch (Exception e) {
             e.printStackTrace();

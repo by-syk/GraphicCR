@@ -35,6 +35,11 @@ public static void main(String[] args) {
     File testFile2 = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/test/2rxl.gif");
     String result2 = GraphicCTranslator.translate(testFile2, GraphicCTranslator.TYPE_2);
     System.out.println(result2);
+    
+    File testFile3 = new File("E:/JavaWebProjects/SchTtable/reserve/东北大学秦皇岛分校/ImageCode/test/xxxx.jpg");
+    String result3 = GraphicCTranslator.translate("http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS",
+            testFile3, GraphicCTranslator.TYPE_1);
+    System.out.println(result3);
 }
 ```
 

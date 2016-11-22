@@ -30,15 +30,31 @@ import com.by_syk.graphiccr.util.ExtraUtil;
 
 /**
  * 第1类图形验证码识别
+ * <br />针对截至 2016-11-22 为止东北大学秦皇岛分校教务系统登录用的验证码
+ * <br />图形尺寸为 60*20
  * 
  * @author By_syk
  */
 public class GraphicC1Translator {
     private static GraphicC1Translator translator = null;
     
+    /**
+     * 元字符宽度
+     */
     private static final int UNIT_W = 10;
+    /**
+     * 元字符高度
+     */
     private static final int UNIT_H = 12;
+    
+    /**
+     * 有效像素颜色值
+     */
     private static final int TARGET_COLOR = Color.BLACK.getRGB();
+    
+    /**
+     * 无效像素颜色值
+     */
     private static final int USELESS_COLOR = Color.WHITE.getRGB();
     
     private GraphicC1Translator() {}
@@ -54,6 +70,9 @@ public class GraphicC1Translator {
     /**
      * 目标像素判断
      * （基于亮度）
+     * 
+     * @param colorInt
+     * @return
      */
     private boolean isTarget(int colorInt) {
         Color color = new Color(colorInt);
@@ -64,6 +83,10 @@ public class GraphicC1Translator {
 
     /**
      * 去噪
+     * 
+     * @param picFile 图形验证码文件
+     * @return
+     * @throws Exception
      */
     private BufferedImage denoise(File picFile) throws Exception {
         BufferedImage img = ImageIO.read(picFile);
@@ -83,6 +106,10 @@ public class GraphicC1Translator {
 
     /**
      * 分割元字符
+     * 
+     * @param img
+     * @return
+     * @throws Exception
      */
     private List<BufferedImage> split(BufferedImage img) throws Exception {
         List<BufferedImage> subImgs = new ArrayList<BufferedImage>();
@@ -95,6 +122,9 @@ public class GraphicC1Translator {
     
     /**
      * 取出训练数据
+     * 
+     * @return
+     * @throws Exception
      */
     private Map<BufferedImage, Character> loadTrainData() throws Exception {
         Map<BufferedImage, Character> map = new HashMap<>();
@@ -118,6 +148,10 @@ public class GraphicC1Translator {
 
     /**
      * 单元识别
+     * 
+     * @param img
+     * @param trainImgMap
+     * @return
      */
     private char recognize(BufferedImage img, Map<BufferedImage, Character> trainImgMap) {
         char result = ' ';
@@ -143,12 +177,15 @@ public class GraphicC1Translator {
     }
 
     /**
-     * 图形验证码识别
+     * 识别
+     * 
+     * @param picFile 图形验证码文件
+     * @return
      */
-    public String translate(File file) {
+    public String translate(File picFile) {
         String result = "";
         try {
-            BufferedImage img = denoise(file);
+            BufferedImage img = denoise(picFile);
             List<BufferedImage> listImg = split(img);
             Map<BufferedImage, Character> map = loadTrainData();
             for (BufferedImage bi : listImg) {
