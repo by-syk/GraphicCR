@@ -25,7 +25,7 @@
 ### 使用
 
 * 以 Eclipse 为例，将 `GraphicCR_vx.x.x.jar` 添加到项目的 `libs` 目录
-* 示例代码：
+* 示例代码：  
 ```java
 public static void main(String[] args) {
     File testFile1 = new File("E:/JavaWebProjects/SchTtable/reserve/东北大学秦皇岛分校/ImageCode/test/3014.jpg");
