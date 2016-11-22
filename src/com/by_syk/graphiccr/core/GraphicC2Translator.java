@@ -88,10 +88,10 @@ public class GraphicC2Translator {
      * 取出训练数据
      */
     private BufferedImage loadTrainData() throws Exception {
-        File dir = new File(this.getClass().getResource("/").getPath());
-        File file = new File(dir, "/resources/img/2/train.gif");
+//        File file = new File(this.getClass().getResource("/resources/img/2/train.gif").getPath());
 //        File file = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/train/train.gif");
-        return ImageIO.read(file);
+//        return ImageIO.read(file);
+      return ImageIO.read(this.getClass().getResourceAsStream("/resources/img/2/train.gif"));
     }
 
     private boolean addTrainImg(BufferedImage trainImg, BufferedImage smallImg, char ch) {
@@ -191,9 +191,5 @@ public class GraphicC2Translator {
             e.printStackTrace();
         }
         return result;
-    }
-    
-    public static void main(String[] args) throws Exception {
-        
     }
 }

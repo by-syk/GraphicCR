@@ -3,8 +3,8 @@
 
 ### 支持类型
 
-| 类型 | 图形 | 来源 | 识别正确率 |
-| :--- | :--- | :--- | :---: |
+| 类型 | 图形 | 来源 | 识别结果 | 识别正确率 |
+| :--- | :--- | :--- | :---: | :--- |
 | 第1类 | [![neuq](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS)](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS) | [东北大学秦皇岛分校教务管理系统](http://jwpt.neuq.edu.cn) | 10 / 10 = **100%**，单：40 / 40 = 100% |
 | 第2类 | [![cmc](http://222.197.143.7/CheckCode.aspx)](http://222.197.143.7/CheckCode.aspx) | [成都医学院教务管理系统](http://222.197.143.7) | 74 / 100 = **74%**，单：372 / 400 = 93% |
 
@@ -22,9 +22,21 @@
 ![graphicc1](art/ps_graphicc2.png)
 
 
-### 测试
+### 使用
 
-TODO
+* 以 Eclipse 为例，将`GraphicCR_vx.x.x.jar`添加到项目的`libs`目录
+* 示例代码：
+```
+public static void main(String[] args) {
+    File testFile1 = new File("E:/JavaWebProjects/SchTtable/reserve/东北大学秦皇岛分校/ImageCode/test/3014.jpg");
+    String result1 = GraphicCTranslator.translate(testFile1, GraphicCTranslator.TYPE_1);
+    System.out.println(result1);
+    
+    File testFile2 = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/test/2rxl.gif");
+    String result2 = GraphicCTranslator.translate(testFile2, GraphicCTranslator.TYPE_2);
+    System.out.println(result2);
+}
+```
 
 
 ### 应用

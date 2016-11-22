@@ -26,6 +26,8 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import com.by_syk.graphiccr.util.ExtraUtil;
+
 /**
  * 第1类图形验证码识别
  * 
@@ -96,10 +98,13 @@ public class GraphicC1Translator {
      */
     private Map<BufferedImage, Character> loadTrainData() throws Exception {
         Map<BufferedImage, Character> map = new HashMap<>();
-        File dir = new File(this.getClass().getResource("/").getPath());
-        dir = new File(dir, "/resources/img/1");
-        for (File file : dir.listFiles()) {
-            map.put(ImageIO.read(file), file.getName().charAt(0));
+        String trainLog = ExtraUtil.readFile(this.getClass().getResourceAsStream("/resources/img/1/1.txt"));
+        if (trainLog == null) {
+            return map;
+        }
+        for (String name : trainLog.split("\n")) {
+            map.put(ImageIO.read(this.getClass().getResourceAsStream("/resources/img/1/"
+                    + name)), name.charAt(0));
         }
         return map;
     }
@@ -153,33 +158,5 @@ public class GraphicC1Translator {
             e.printStackTrace();
         }
         return result;
-    }
-
-    public static void main(String[] args) throws Exception {
-//        GraphicC1Translator translator = new GraphicC1Translator();
-//        File dir = new File("E:/JavaWebProjects/SchTtable/reserve/东北大学秦皇岛分校/ImageCode/raw");
-//        for (File file : dir.listFiles()) {
-//            String raw = file.getName().split("\\.")[0];
-//            String guess = translator.translate(file);
-//            System.out.println(raw + " - " + guess + " : " + raw.equals(guess));
-//        }
-        
-//        BufferedImage img = translator.removeBackgroud(dir.getPath() + "/5773.jpg");
-//        List<BufferedImage> listImg = splitImage(img);
-//        ImageIO.write(listImg.get(2), "JPG", new File(dir.getPath() + "/5773-2.jpg"));
-      
-//      GraphicC1Translator translator = new GraphicC1Translator();
-//      File dir = new File("E:/JavaWebProjects/SchTtable/reserve/东北大学秦皇岛分校/ImageCode/raw/todo");
-//      BufferedImage img = translator.denoise(dir.getPath() + "/7672.jpg");
-//      ImageIO.write(img, "JPG", new File(dir.getPath() + "/7672-3.jpg"));
-        
-//        GraphicC1Translator translator = new GraphicC1Translator();
-//        File dir = new File("E:/JavaWebProjects/SchTtable/reserve/东北大学秦皇岛分校/ImageCode/raw");
-//        for (File file : dir.listFiles()) {
-//            if (file.isFile()) {
-//                BufferedImage img = translator.denoise(file);
-//                ImageIO.write(img, "JPG", new File(dir, file.getName().split("\\.")[0] + "-2.jpg"));
-//            }
-//        }
     }
 }

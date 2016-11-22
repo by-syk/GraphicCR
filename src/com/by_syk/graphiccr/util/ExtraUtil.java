@@ -16,15 +16,18 @@
 
 package com.by_syk.graphiccr.util;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
 public class ExtraUtil {
-    public static boolean downloadFile(String urlStr, String saveFile) {
+    public static boolean downloadFile(String urlStr, File saveFile) {
         InputStream inputStream = null;
         OutputStream outputStream = null;
         try {
@@ -57,5 +60,38 @@ public class ExtraUtil {
         }
         
         return false;
+    }
+    
+    public static String readFile(InputStream inputStream) {
+        if (inputStream == null) {
+            return null;
+        }
+
+        StringBuilder sbData = new StringBuilder();
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            String buffer;
+            while ((buffer = bufferedReader.readLine()) != null) {
+                sbData.append(buffer).append("\n");
+            }
+            if (sbData.length() > 0) {
+                sbData.setLength(sbData.length() - 1);
+            }
+
+            return sbData.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return null;
     }
 }
