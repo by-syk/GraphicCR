@@ -6,12 +6,19 @@
 | 类型 | 图形 | 来源 | 识别正确率 |
 | :--- | :--- | :--- | :---: |
 | 第1类 | [![neuq](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS)](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS) | [东北大学秦皇岛分校教务管理系统](http://jwpt.neuq.edu.cn) | 100% |
-| 第2类 | [![cmc]](http://222.197.143.7/CheckCode.aspx) | [成都医学院教务管理系统](http://222.197.143.7) | TODO |
+| 第2类 | [![cmc](http://222.197.143.7/CheckCode.aspx)](http://222.197.143.7/CheckCode.aspx) | [成都医学院教务管理系统](http://222.197.143.7) | TODO |
 
 图形样本特征分析：
-* 第1类
+* 第1类  
+:smile: `字符数固定`  
+:smile: `位置基本固定` 每个字符具有1~2像素的水平偏移  
+:smile: `字符亮度一致` 阀值0.6  
 ![graphicc1](art/ps_graphicc1.png)
-* 第2类
+* 第2类  
+:smile: `字符数固定`  
+:smile: `位置基本固定` 字符间有1像素交集  
+:smile: `字符颜色固定` 色值#000099  
+:persevere: `字符有旋转`  
 ![graphicc1](art/ps_graphicc2.png)
 
 
@@ -22,8 +29,7 @@ TODO
 
 ## 应用
 
-* 极课（一款简单的高校课表App）
-
+* 极课（一款简单的高校课表App）  
 ![schttable](art/ic_launcher_schttable.png)
 
 
