@@ -59,22 +59,22 @@ public class Test {
         File trainFile = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/train/train.gif");
         File testDir = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/test");
         
-//        translator.train(rawDir, trainFile);
-//        
-//        System.out.println("TRAIN DONE");
+        translator.train(rawDir, trainFile);
+        
+        System.out.println("TRAIN DONE");
 
-//        for (int i = 0; i < 100; ++i) {
-//            ExtraUtil.downloadFile("http://222.197.143.7/CheckCode.aspx",
-//                    new File(testDir, System.currentTimeMillis() + ".gif").getPath());
-//            System.out.println("DOWNLOAD TEST " + (i + 1));
-//            try {
-//                Thread.sleep(100);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        
-//        System.out.println("DOWNLOAD TEST DONE");
+        for (int i = 0; i < 100; ++i) {
+            ExtraUtil.downloadFile("http://222.197.143.7/CheckCode.aspx",
+                    new File(testDir, System.currentTimeMillis() + ".gif").getPath());
+            System.out.println("DOWNLOAD TEST " + (i + 1));
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        System.out.println("DOWNLOAD TEST DONE");
 
         for (File file : testDir.listFiles()) {
             String result = translator.translate(file);
