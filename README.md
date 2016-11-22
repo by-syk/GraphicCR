@@ -1,34 +1,40 @@
-# GraphicCR - »ùÓÚ Java µÄ¼òµ¥Í¼ĞÎÑéÖ¤ÂëÊ¶±ğ
+# GraphicCR - åŸºäº Java çš„ç®€å•å›¾å½¢éªŒè¯ç è¯†åˆ«
 
 
-### Ö§³ÖÀàĞÍ
+### æ”¯æŒç±»å‹
 
-| ÀàĞÍ | Í¼ĞÎ | À´Ô´ | Ê¶±ğÕıÈ·ÂÊ |
+| ç±»å‹ | å›¾å½¢ | æ¥æº | è¯†åˆ«æ­£ç¡®ç‡ |
 | :--- | :--- | :--- | :---: |
-| µÚ1Àà | [![neuq]](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS) | [¶«±±´óÑ§ÇØ»Êµº·ÖĞ£½ÌÎñ¹ÜÀíÏµÍ³](http://jwpt.neuq.edu.cn) | 100% |
-| µÚ2Àà | [![cmc]](http://222.197.143.7/CheckCode.aspx) | [³É¶¼Ò½Ñ§Ôº½ÌÎñ¹ÜÀíÏµÍ³](http://222.197.143.7) | TODO |
+| ç¬¬1ç±» | [![neuq](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS) | [ä¸œåŒ—å¤§å­¦ç§¦çš‡å²›åˆ†æ ¡æ•™åŠ¡ç®¡ç†ç³»ç»Ÿ](http://jwpt.neuq.edu.cn)] | 100% |
+| ç¬¬2ç±» | [![cmc](http://222.197.143.7/CheckCode.aspx)] | [æˆéƒ½åŒ»å­¦é™¢æ•™åŠ¡ç®¡ç†ç³»ç»Ÿ](http://222.197.143.7) | TODO |
+
+å›¾å½¢æ ·æœ¬ç‰¹å¾åˆ†æï¼š
+* ç¬¬1ç±»
+![graphicc1](art/ps_graphicc1.png)
+* ç¬¬2ç±»
+![graphicc1](art/ps_graphicc2.png)
 
 
-### ²âÊÔ
+### æµ‹è¯•
 
 TODO
 
 
-## Ó¦ÓÃ
+## åº”ç”¨
 
-* ¼«¿Î£¨Ò»¿î¼òµ¥µÄ¸ßĞ£¿Î±íApp£©
+* æè¯¾ï¼ˆä¸€æ¬¾ç®€å•çš„é«˜æ ¡è¯¾è¡¨Appï¼‰
 
 ![schttable](art/ic_launcher_schttable.png)
 
 
-### ²Î¿¼×ÊÁÏ
+### å‚è€ƒèµ„æ–™
 
-* @problc µÄ²©¿Í£º[javaÑéÖ¤ÂëÊ¶±ğ](http://blog.csdn.net/problc/article/details/5794460)
+* @problc çš„åšå®¢ï¼š[javaéªŒè¯ç è¯†åˆ«](http://blog.csdn.net/problc/article/details/5794460)
 
 
-### ÁªÏµ×÷Õß
+### è”ç³»ä½œè€…
 
-* E-mail£º[By_syk@163.com](mailto:By_syk@163.com "By_syk")
+* E-mailï¼š[By_syk@163.com](mailto:By_syk@163.com "By_syk")
 
 
 ### License
