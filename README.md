@@ -5,8 +5,8 @@
 
 | 类型 | 图形 | 来源 | 识别正确率 |
 | :--- | :--- | :--- | :---: |
-| 第1类 | [![neuq](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS)](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS) | [东北大学秦皇岛分校教务管理系统](http://jwpt.neuq.edu.cn) | 100% |
-| 第2类 | [![cmc](http://222.197.143.7/CheckCode.aspx)](http://222.197.143.7/CheckCode.aspx) | [成都医学院教务管理系统](http://222.197.143.7) | TODO |
+| 第1类 | [![neuq](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS)](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS) | [东北大学秦皇岛分校教务管理系统](http://jwpt.neuq.edu.cn) | 10 / 10 = 100%  40 / 40 = 100% |
+| 第2类 | [![cmc](http://222.197.143.7/CheckCode.aspx)](http://222.197.143.7/CheckCode.aspx) | [成都医学院教务管理系统](http://222.197.143.7) | 73 / 100 = 73%  364 / 400 = 91% |
 
 图形样本特征分析：
 * 第1类  
@@ -17,7 +17,7 @@
 * 第2类  
 :smile: 字符数固定  
 :smile: 位置基本固定，字符间有1像素交集  
-:smile: 字符颜色固定，色值`#000099`  
+:smile: 字符颜色固定，色值`#ff000099`  
 :persevere: 字符有旋转  
 ![graphicc1](art/ps_graphicc2.png)
 
@@ -27,7 +27,7 @@
 TODO
 
 
-## 应用
+### 应用
 
 * 极课（一款简单的高校课表App）  
 ![schttable](art/ic_launcher_schttable.png)
