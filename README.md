@@ -10,15 +10,15 @@
 
 图形样本特征分析：
 * 第1类  
-:smile: `字符数固定`  
-:smile: `位置基本固定` 每个字符具有1~2像素的水平偏移  
-:smile: `字符亮度一致` 阀值0.6  
+:smile: 字符数固定  
+:smile: 位置基本固定，每个字符具有1~2像素的水平偏移  
+:smile: 字符亮度一致，阀值`0.6`  
 ![graphicc1](art/ps_graphicc1.png)
 * 第2类  
-:smile: `字符数固定`  
-:smile: `位置基本固定` 字符间有1像素交集  
-:smile: `字符颜色固定` 色值#000099  
-:persevere: `字符有旋转`  
+:smile: 字符数固定  
+:smile: 位置基本固定，字符间有1像素交集  
+:smile: 字符颜色固定，色值`#000099`  
+:persevere: 字符有旋转  
 ![graphicc1](art/ps_graphicc2.png)
 
 
