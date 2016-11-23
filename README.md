@@ -25,6 +25,7 @@
 :smile: 字符数固定  
 :smile: 字符饱和度一致，阀值`0.2`  
 :persevere: 位置水平基本固定、垂直漂移  
+:persevere: 有随机干扰线  
 ![graphicc3](art/ps_graphicc3.png)
 
 
