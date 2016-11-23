@@ -6,8 +6,8 @@
 | 类型 | 图形 | 来源 | 识别正确率 |
 | :--- | :--- | :--- | :--- |
 | 第1类 | [![neuq](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS)](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS) | [东北大学秦皇岛分校教务管理系统](http://jwpt.neuq.edu.cn) | 10 / 10 = **100%**，单：40 / 40 = 100% |
-| 第2类 | [![cmc](http://222.197.143.7/CheckCode.aspx)](http://222.197.143.7/CheckCode.aspx) | [成都医学院教务管理系统](http://222.197.143.7) | 74 / 100 = **74%**，单：372 / 400 = 93% |
-| 第3类 | [![bbmc](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx)](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx) | [蚌埠医学院教务网络管理系统](http://211.70.128.23/JWWEB/) | TODO |
+| 第2类 | [![cmc](http://222.197.143.7/CheckCode.aspx)](http://222.197.143.7/CheckCode.aspx) | [成都医学院教务管理系统](http://222.197.143.7) | 87 / 100 = **87%**，单：386 / 400 = 96.5% |
+| 第3类 | [![bbmc](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx)](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx) | [蚌埠医学院教务网络管理系统](http://211.70.128.23/JWWEB/) | 91 / 100 = **91%**，单：389 / 400 = 97% |
 
 图形样本特征分析：
 * 第1类  

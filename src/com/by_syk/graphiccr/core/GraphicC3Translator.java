@@ -26,26 +26,26 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 /**
- * 第2类图形验证码识别
- * <br />针对截至 2016-11-22 为止成都医学院、四川理工学院教务管理系统登录用的验证码
- * <br />图形尺寸为 72*27
+ * 第3类图形验证码识别
+ * <br />针对截至 2016-11-22 为止蚌埠医学院教务网络管理系统登录用的验证码
+ * <br />图形尺寸为 122*54
  * 
  * @author By_syk
  */
-public class GraphicC2Translator {
-    private static GraphicC2Translator translator = null;
+public class GraphicC3Translator {
+    private static GraphicC3Translator translator = null;
     
     private BufferedImage trainImg = null;
     
     /**
      * 元字符宽度
      */
-    private static final int UNIT_W = 13;
+    private static final int UNIT_W = 35;
     
     /**
      * 元字符高度
      */
-    private static final int UNIT_H = 22;
+    private static final int UNIT_H = 40;
     
     /**
      * 训练元字符数
@@ -55,9 +55,9 @@ public class GraphicC2Translator {
     /**
      * 所有元字符
      */
-    private static final char[] TRAIN_CHARS = {'0', '1', '2', '3', '4', '5', '6', '7', '8',/* '9',*/
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-            /*'o', */'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y'/*, 'z'*/};
+    private static final char[] TRAIN_CHARS = {/*'0', '1', */'2', '3', '4', '5', '6', '7', '8', '9',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', /*'I', */'J', 'K', /*'L', */'M', 'N',
+            /*'O', */'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     
     /**
      * 有效像素颜色值
@@ -69,14 +69,28 @@ public class GraphicC2Translator {
      */
     private static final int USELESS_COLOR = Color.WHITE.getRGB();
     
-    private GraphicC2Translator() {}
+    private GraphicC3Translator() {}
     
-    public static GraphicC2Translator getInstance() {
+    public static GraphicC3Translator getInstance() {
         if (translator == null) {
-            translator = new GraphicC2Translator();
+            translator = new GraphicC3Translator();
         }
         
         return translator;
+    }
+    
+    /**
+     * 目标像素判断
+     * （基于饱和度）
+     * 
+     * @param colorInt
+     * @return
+     */
+    private boolean isTarget(int colorInt) {
+        Color color = new Color(colorInt);
+        float[] hsb = new float[3];
+        Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), hsb);
+        return hsb[1] > 0.2f; // 饱和度
     }
     
     /**
@@ -90,19 +104,34 @@ public class GraphicC2Translator {
         BufferedImage img = ImageIO.read(picFile);
         int width = img.getWidth();
         int height = img.getHeight();
-        final int TARGET = 0xff000099;
         for (int x = 0; x < width; ++x) {
             for (int y = 0; y < height; ++y) {
-                if (img.getRGB(x, y) == TARGET) {
+                if (x > 1 && x < width - 1 && y > 13 && y < height - 3
+                        && isTarget(img.getRGB(x, y))) {
                     img.setRGB(x, y, TARGET_COLOR);
                 } else {
                     img.setRGB(x, y, USELESS_COLOR);
                 }
             }
         }
+        
+        for (int x = 1; x < width - 1; ++x) {
+            for (int y = 13; y < height - 1; ++y) {
+                if (img.getRGB(x, y) == TARGET_COLOR) {
+                    int shotNum = 0;
+                    for (int i = 0; i < 9; ++i) {
+                        shotNum += img.getRGB(x - 1 + (i % 3), y - 1 + (i / 3)) == TARGET_COLOR ? 1 : 0;
+                    }
+                    if (shotNum <= 3) {
+                        img.setRGB(x, y, USELESS_COLOR);
+                    }
+                }
+            }
+        }
+        
         return img;
     }
-
+    
     /**
      * 分割元字符
      * 
@@ -112,11 +141,65 @@ public class GraphicC2Translator {
      */
     private List<BufferedImage> split(BufferedImage img) throws Exception {
         List<BufferedImage> subImgs = new ArrayList<BufferedImage>();
-        subImgs.add(img.getSubimage(4, 0, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(16, 0, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(28, 0, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(40, 0, UNIT_W, UNIT_H));
+        subImgs.add(fix(img.getSubimage(1, 13, 35, UNIT_H)));
+        subImgs.add(fix(img.getSubimage(35, 13, 29, UNIT_H)));
+        subImgs.add(fix(img.getSubimage(63, 13, 29, UNIT_H)));
+        subImgs.add(fix(img.getSubimage(90, 13, 30, UNIT_H)));
         return subImgs;
+    }
+    
+    /**
+     * 纠偏
+     */
+    private BufferedImage fix(BufferedImage img) {
+        int w = img.getWidth();
+        int h = img.getHeight();
+        int xOffset = 0;
+        int yOffset = 0;
+        outter1: for (int i = 0, times = 0, last = -1; i < w; ++i) {
+            for (int j = 0, count = 0; j < h; ++j) {
+                if (img.getRGB(i, j) == TARGET_COLOR && ++count > 1) {
+                    if (i == last + 1) {
+                        if (++times == 4) {
+                            xOffset = i - 3;
+                            break outter1;
+                        }
+                    } else {
+                        times = 1;
+                    }
+                    last = i;
+                    break;
+                }
+            }
+        }
+        outter2: for (int i = 0, times = 0, last = -1; i < h; ++i) {
+            for (int j = 0, count = 0; j < w; ++j) {
+                if (img.getRGB(j, i) == TARGET_COLOR && ++count > 1) {
+                    if (i == last + 1) {
+                        if (++times == 4) {
+                            yOffset = i - 3;
+                            break outter2;
+                        }
+                    } else {
+                        times = 1;
+                    }
+                    last = i;
+                    break;
+                }
+            }
+        }
+        
+        BufferedImage newImg = new BufferedImage(UNIT_W, UNIT_H, BufferedImage.TYPE_INT_ARGB);
+        for (int i = 0; i < UNIT_W; ++i) {
+            for (int j = 0; j < UNIT_H; ++j) {
+                if (xOffset + i < w && yOffset + j < h) {
+                    newImg.setRGB(i, j, img.getRGB(xOffset + i, yOffset + j));
+                } else {
+                    newImg.setRGB(i, j, USELESS_COLOR);
+                }
+            }
+        }
+        return newImg;
     }
 
     /**
@@ -127,13 +210,13 @@ public class GraphicC2Translator {
      */
     private BufferedImage loadTrainData() throws Exception {
         if (trainImg == null) {
-            trainImg = ImageIO.read(this.getClass().getResourceAsStream("/resources/img/2/train.png"));
-//            File file = new File(this.getClass().getResource("/resources/img/2/train.png").getPath());
-//            File file = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/train/train.png");
+                trainImg = ImageIO.read(this.getClass().getResourceAsStream("/resources/img/3/train.png"));
+//                File file = new File(this.getClass().getResource("/resources/img/3/train.png").getPath());
+//            File file = new File("E:/JavaWebProjects/SchTtable/reserve/蚌埠医学院/ImageCode/train/train.png");
 //            trainImg = ImageIO.read(file);
         }
-        
-        return trainImg;
+      
+      return trainImg;
     }
 
     /**

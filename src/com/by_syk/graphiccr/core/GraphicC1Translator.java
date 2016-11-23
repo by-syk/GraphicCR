@@ -38,6 +38,8 @@ import com.by_syk.graphiccr.util.ExtraUtil;
 public class GraphicC1Translator {
     private static GraphicC1Translator translator = null;
     
+    private Map<BufferedImage, Character> trainMap = null;
+    
     /**
      * 元字符宽度
      */
@@ -78,7 +80,7 @@ public class GraphicC1Translator {
         Color color = new Color(colorInt);
         float[] hsb = new float[3];
         Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), hsb);
-        return hsb[2] < 0.6;
+        return hsb[2] < 0.6f; // 亮度
     }
 
     /**
@@ -127,16 +129,19 @@ public class GraphicC1Translator {
      * @throws Exception
      */
     private Map<BufferedImage, Character> loadTrainData() throws Exception {
-        Map<BufferedImage, Character> map = new HashMap<>();
-        String trainLog = ExtraUtil.readFile(this.getClass().getResourceAsStream("/resources/img/1/1.txt"));
-        if (trainLog == null) {
-            return map;
+        if (trainMap == null) {
+            trainMap = new HashMap<>();
+            String trainLog = ExtraUtil.readFile(this.getClass().getResourceAsStream("/resources/img/1/1.txt"));
+            if (trainLog == null) {
+                return trainMap;
+            }
+            for (String name : trainLog.split("\n")) {
+                trainMap.put(ImageIO.read(this.getClass().getResourceAsStream("/resources/img/1/"
+                        + name)), name.charAt(0));
+            }
         }
-        for (String name : trainLog.split("\n")) {
-            map.put(ImageIO.read(this.getClass().getResourceAsStream("/resources/img/1/"
-                    + name)), name.charAt(0));
-        }
-        return map;
+        
+        return trainMap;
     }
 
     /**

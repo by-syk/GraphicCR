@@ -20,11 +20,12 @@ import java.io.File;
 
 import com.by_syk.graphiccr.core.GraphicC1Translator;
 import com.by_syk.graphiccr.core.GraphicC2Translator;
+import com.by_syk.graphiccr.core.GraphicC3Translator;
 import com.by_syk.graphiccr.util.ExtraUtil;
 
 public class Test {
     public static void main(String[] args) {
-        testGraphicC1();
+        testGraphicC3();
     }
     
     private static void testGraphicC1() {
@@ -56,15 +57,15 @@ public class Test {
     private static void testGraphicC2() {
         GraphicC2Translator translator = GraphicC2Translator.getInstance();
         File rawDir = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/raw");
-        File trainFile = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/train/train.gif");
+        File trainFile = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/train/train.png");
         File testDir = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/test");
         
         translator.train(rawDir, trainFile);
         
         System.out.println("TRAIN DONE");
 
-        for (int i = 0; i < 10; ++i) {
-            ExtraUtil.downloadFile("http://222.197.143.7/CheckCode.aspx",
+        for (int i = 0; i < 80; ++i) {
+            ExtraUtil.downloadFile("http://61.139.105.138/CheckCode.aspx",
                     new File(testDir, System.currentTimeMillis() + ".gif"));
             System.out.println("DOWNLOAD TEST " + (i + 1));
             try {
@@ -79,6 +80,38 @@ public class Test {
         for (File file : testDir.listFiles()) {
             String result = translator.translate(file);
             file.renameTo(new File(file.getParentFile(), result + ".gif"));
+            System.out.println("TRANSLATE " + result);
+        }
+        
+        System.out.println("TRANSLATE DONE");
+    }
+    
+    private static void testGraphicC3() {
+        GraphicC3Translator translator = GraphicC3Translator.getInstance();
+        File rawDir = new File("E:/JavaWebProjects/SchTtable/reserve/蚌埠医学院/ImageCode/raw");
+        File trainFile = new File("E:/JavaWebProjects/SchTtable/reserve/蚌埠医学院/ImageCode/train/train.png");
+        File testDir = new File("E:/JavaWebProjects/SchTtable/reserve/蚌埠医学院/ImageCode/test");
+        
+        translator.train(rawDir, trainFile);
+        
+        System.out.println("TRAIN DONE");
+
+        for (int i = 0; i < 100; ++i) {
+            ExtraUtil.downloadFile("http://211.70.128.23/JWWEB/sys/ValidateCode.aspx",
+                    new File(testDir, System.currentTimeMillis() + ".jpg"));
+            System.out.println("DOWNLOAD TEST " + (i + 1));
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        System.out.println("DOWNLOAD TEST DONE");
+
+        for (File file : testDir.listFiles()) {
+            String result = translator.translate(file);
+            file.renameTo(new File(file.getParentFile(), result + ".jpg"));
             System.out.println("TRANSLATE " + result);
         }
         

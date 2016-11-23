@@ -30,10 +30,17 @@ public class GraphicCTranslator {
     
     /**
      * 第2类图形验证码识别
-     * <br />针对截至 2016-11-22 为止成都医学院教务系统登录用的验证码
+     * <br />针对截至 2016-11-22 为止成都医学院、四川理工学院教务管理系统登录用的验证码
      * <br />图形尺寸为 72*27
      */
     public static final int TYPE_2 = 2;
+    
+    /**
+     * 第3类图形验证码识别
+     * <br />针对截至 2016-11-22 为止蚌埠医学院教务网络管理系统登录用的验证码
+     * <br />图形尺寸为 122*54
+     */
+    public static final int TYPE_3 = 3;
     
     /**
      * 识别指定文件的图形验证码
@@ -48,6 +55,8 @@ public class GraphicCTranslator {
             return GraphicC1Translator.getInstance().translate(picFile);
         case TYPE_2:
             return GraphicC2Translator.getInstance().translate(picFile);
+        case TYPE_3:
+            return GraphicC3Translator.getInstance().translate(picFile);
         }
         return "";
     }
