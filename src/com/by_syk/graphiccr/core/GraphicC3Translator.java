@@ -81,7 +81,7 @@ public class GraphicC3Translator {
     
     /**
      * 目标像素判断
-     * （基于饱和度）
+     * <br />（基于饱和度）
      * 
      * @param colorInt
      * @return

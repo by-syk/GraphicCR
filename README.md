@@ -30,7 +30,7 @@
 
 ### 开始使用
 
-* 以 Eclipse 为例，将 `GraphicCR_vx.x.x.jar` 添加到项目的 `libs` 目录
+* 以 Eclipse 为例，将 `graphiccr-x.x.x.jar` 添加到项目的 `libs` 目录
 * 示例代码：
 ```java
 public static void main(String[] args) {

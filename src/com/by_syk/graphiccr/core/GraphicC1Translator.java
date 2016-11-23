@@ -71,7 +71,7 @@ public class GraphicC1Translator {
     
     /**
      * 目标像素判断
-     * （基于亮度）
+     * <br />（基于亮度）
      * 
      * @param colorInt
      * @return
