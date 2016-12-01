@@ -14,6 +14,7 @@
 * 第1类  
 :smile: 字符数固定，且只有数字  
 :smile: 字符亮度一致，阀值 `0.6`  
+:smile: 无字形变化  
 :smile: 位置基本固定，每个字符具有1~3像素的水平偏移  
 ![graphicc1](art/ps_graphicc1.png)
 * 第2类  
