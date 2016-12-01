@@ -33,7 +33,7 @@
 ![graphicc3](art/ps_graphicc3.png)
 * 第4类  
 :smile: 字符数固定  
-:smile: 字符亮度一致，阀值 `0.62`  
+:smile: 字符亮度基本一致，阀值 `0.62`  
 :smile: 无字形变化  
 :smile: 每个字符相对位置固定，字符间水平有2像素交集  
 ![graphicc4](art/ps_graphicc4.png)
