@@ -21,15 +21,16 @@ import java.io.File;
 import com.by_syk.graphiccr.core.GraphicC1Translator;
 import com.by_syk.graphiccr.core.GraphicC2Translator;
 import com.by_syk.graphiccr.core.GraphicC3Translator;
+import com.by_syk.graphiccr.core.GraphicC4Translator;
 import com.by_syk.graphiccr.util.ExtraUtil;
 
 public class Test {
     public static void main(String[] args) {
-        testGraphicC3();
+        testGraphicC4();
     }
     
     private static void testGraphicC1() {
-        File testDir = new File("E:/JavaWebProjects/SchTtable/reserve/东北大学秦皇岛分校/ImageCode/test");
+        File testDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/1/test");
         
         for (int i = 0; i < 10; ++i) {
             ExtraUtil.downloadFile("http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS",
@@ -56,9 +57,9 @@ public class Test {
     
     private static void testGraphicC2() {
         GraphicC2Translator translator = GraphicC2Translator.getInstance();
-        File rawDir = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/raw");
-        File trainFile = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/train/train.png");
-        File testDir = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/test");
+        File rawDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/2/raw");
+        File trainFile = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/2/train/train.png");
+        File testDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/2/test");
         
         translator.train(rawDir, trainFile);
         
@@ -88,9 +89,9 @@ public class Test {
     
     private static void testGraphicC3() {
         GraphicC3Translator translator = GraphicC3Translator.getInstance();
-        File rawDir = new File("E:/JavaWebProjects/SchTtable/reserve/蚌埠医学院/ImageCode/raw");
-        File trainFile = new File("E:/JavaWebProjects/SchTtable/reserve/蚌埠医学院/ImageCode/train/train.png");
-        File testDir = new File("E:/JavaWebProjects/SchTtable/reserve/蚌埠医学院/ImageCode/test");
+        File rawDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/3/raw");
+        File trainFile = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/3/train/train.png");
+        File testDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/3/test");
         
         translator.train(rawDir, trainFile);
         
@@ -109,6 +110,32 @@ public class Test {
         
         System.out.println("DOWNLOAD TEST DONE");
 
+        for (File file : testDir.listFiles()) {
+            String result = translator.translate(file);
+            file.renameTo(new File(file.getParentFile(), result + ".jpg"));
+            System.out.println("TRANSLATE " + result);
+        }
+        
+        System.out.println("TRANSLATE DONE");
+    }
+    
+    private static void testGraphicC4() {
+        File testDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/4/test");
+        
+        for (int i = 0; i < 100; ++i) {
+            ExtraUtil.downloadFile("http://211.64.127.221/validateCodeAction.do?random=0.44780089727138145",
+                    new File(testDir, System.currentTimeMillis() + ".jpg"));
+            System.out.println("DOWNLOAD TEST " + (i + 1));
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        System.out.println("DOWNLOAD TEST DONE");
+
+        GraphicC4Translator translator = GraphicC4Translator.getInstance();
         for (File file : testDir.listFiles()) {
             String result = translator.translate(file);
             file.renameTo(new File(file.getParentFile(), result + ".jpg"));

@@ -43,6 +43,13 @@ public class GraphicCTranslator {
     public static final int TYPE_3 = 3;
     
     /**
+     * 第4类图形验证码识别
+     * <br />针对截至 2016-12-01 为止山东交通学院综合教务系统登录用的验证码
+     * <br />图形尺寸为 60*20
+     */
+    public static final int TYPE_4 = 4;
+    
+    /**
      * 识别指定文件的图形验证码
      * 
      * @param picFile
@@ -57,6 +64,8 @@ public class GraphicCTranslator {
             return GraphicC2Translator.getInstance().translate(picFile);
         case TYPE_3:
             return GraphicC3Translator.getInstance().translate(picFile);
+        case TYPE_4:
+            return GraphicC4Translator.getInstance().translate(picFile);
         }
         return "";
     }

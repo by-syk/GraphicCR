@@ -7,26 +7,35 @@
 | :--- | :--- | :--- | :--- |
 | 第1类 | [![neuq](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS)](http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS) | [东北大学秦皇岛分校教务管理系统](http://jwpt.neuq.edu.cn) | 10 / 10 = **100%**，单：40 / 40 = 100% |
 | 第2类 | [![cmc](http://222.197.143.7/CheckCode.aspx)](http://222.197.143.7/CheckCode.aspx) | [成都医学院教务管理系统](http://222.197.143.7) | 87 / 100 = **87%**，单：386 / 400 = 96.5% |
-| 第3类 | [![bbmc](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx)](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx) | [蚌埠医学院教务网络管理系统](http://211.70.128.23/JWWEB/) | 91 / 100 = **91%**，单：389 / 400 = 97% |
+| 第3类 | [![bbmc](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx)](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx) | [蚌埠医学院教务网络管理系统](http://211.70.128.23/JWWEB) | 91 / 100 = **91%**，单：389 / 400 = 97% |
+| 第4类 | [![sdjtu](http://211.64.127.221/validateCodeAction.do?random=0.44780089727138211)](http://211.64.127.221/validateCodeAction.do?random=0.44780089727138211) | [山东交通学院综合教务系统](http://211.64.127.221) | 97 / 100 = **97%**，单：397 / 400 = 99% |
 
 图形样本特征分析：
 * 第1类  
-:smile: 字符数固定  
+:smile: 字符数固定，且只有数字  
 :smile: 字符亮度一致，阀值 `0.6`  
 :smile: 位置基本固定，每个字符具有1~3像素的水平偏移  
 ![graphicc1](art/ps_graphicc1.png)
 * 第2类  
 :smile: 字符数固定  
 :smile: 字符颜色固定，色值 `#ff000099`  
+:smile: 无字形变化  
 :smile: 位置基本固定，字符间水平有1像素交集  
 :persevere: 字符有旋转  
 ![graphicc2](art/ps_graphicc2.png)
 * 第3类  
 :smile: 字符数固定  
 :smile: 字符饱和度一致，阀值`0.2`  
+:smile: 无字形变化  
 :persevere: 位置水平基本固定、垂直漂移  
 :persevere: 有随机干扰线  
 ![graphicc3](art/ps_graphicc3.png)
+* 第4类  
+:smile: 字符数固定  
+:smile: 字符亮度一致，阀值 `0.62`  
+:smile: 无字形变化  
+:smile: 每个字符相对位置固定，字符间水平有2像素交集  
+![graphicc4](art/ps_graphicc4.png)
 
 
 ### 开始使用
@@ -35,15 +44,15 @@
 * 示例代码：
 ```java
 public static void main(String[] args) {
-    File testFile1 = new File("E:/JavaWebProjects/SchTtable/reserve/东北大学秦皇岛分校/ImageCode/test/3014.jpg");
+    File testFile1 = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/1/test/3014.jpg");
     String result1 = GraphicCTranslator.translate(testFile1, GraphicCTranslator.TYPE_1);
     System.out.println(result1);
     
-    File testFile2 = new File("E:/JavaWebProjects/SchTtable/reserve/成都医学院/ImageCode/test/2rxl.gif");
+    File testFile2 = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/2/test/2rxl.gif");
     String result2 = GraphicCTranslator.translate(testFile2, GraphicCTranslator.TYPE_2);
     System.out.println(result2);
     
-    File testFile3 = new File("E:/JavaWebProjects/SchTtable/reserve/东北大学秦皇岛分校/ImageCode/test/xxxx.jpg");
+    File testFile3 = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/1/test/xxxx.jpg");
     String result3 = GraphicCTranslator.translate("http://jwpt.neuq.edu.cn/ACTIONVALIDATERANDOMPICTURE.APPPROCESS",
             testFile3, GraphicCTranslator.TYPE_1);
     System.out.println(result3);

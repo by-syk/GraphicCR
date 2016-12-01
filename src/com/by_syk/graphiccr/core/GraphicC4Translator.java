@@ -29,25 +29,25 @@ import javax.imageio.ImageIO;
 import com.by_syk.graphiccr.util.ExtraUtil;
 
 /**
- * 第1类图形验证码识别
- * <br />针对截至 2016-11-22 为止东北大学秦皇岛分校教务管理系统登录用的验证码
+ * 第4类图形验证码识别
+ * <br />针对截至 2016-12-01 为止山东交通学院综合教务系统登录用的验证码
  * <br />图形尺寸为 60*20
  * 
  * @author By_syk
  */
-public class GraphicC1Translator {
-    private static GraphicC1Translator translator = null;
+public class GraphicC4Translator {
+    private static GraphicC4Translator translator = null;
     
     private Map<BufferedImage, Character> trainMap = null;
     
     /**
      * 元字符宽度
      */
-    private static final int UNIT_W = 10;
+    private static final int UNIT_W = 15;
     /**
      * 元字符高度
      */
-    private static final int UNIT_H = 12;
+    private static final int UNIT_H = 17;
     
     /**
      * 有效像素颜色值
@@ -59,11 +59,11 @@ public class GraphicC1Translator {
      */
     private static final int USELESS_COLOR = Color.WHITE.getRGB();
     
-    private GraphicC1Translator() {}
+    private GraphicC4Translator() {}
     
-    public static GraphicC1Translator getInstance() {
+    public static GraphicC4Translator getInstance() {
         if (translator == null) {
-            translator = new GraphicC1Translator();
+            translator = new GraphicC4Translator();
         }
         
         return translator;
@@ -80,7 +80,7 @@ public class GraphicC1Translator {
         Color color = new Color(colorInt);
         float[] hsb = new float[3];
         Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), hsb);
-        return hsb[2] < 0.6f; // 亮度
+        return hsb[2] < 0.52f; // 亮度
     }
 
     /**
@@ -115,10 +115,10 @@ public class GraphicC1Translator {
      */
     private List<BufferedImage> split(BufferedImage img) throws Exception {
         List<BufferedImage> subImgs = new ArrayList<BufferedImage>();
-        subImgs.add(img.getSubimage(5, 4, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(18, 4, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(32, 4, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(44, 4, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(4, 3, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(17, 3, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(30, 3, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(43, 3, UNIT_W, UNIT_H));
         return subImgs;
     }
     
@@ -132,13 +132,13 @@ public class GraphicC1Translator {
         if (trainMap == null) {
             trainMap = new HashMap<>();
             String trainLog = ExtraUtil.readFile(this.getClass()
-                    .getResourceAsStream("/resources/img/1/1.txt"));
+                    .getResourceAsStream("/resources/img/4/4.txt"));
             if (trainLog == null) {
                 return trainMap;
             }
             for (String name : trainLog.split("\n")) {
                 trainMap.put(ImageIO.read(this.getClass()
-                        .getResourceAsStream("/resources/img/1/" + name)), name.charAt(0));
+                        .getResourceAsStream("/resources/img/4/" + name)), name.charAt(0));
             }
         }
         
