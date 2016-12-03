@@ -50,6 +50,13 @@ public class GraphicCTranslator {
     public static final int TYPE_4 = 4;
     
     /**
+     * 第5类图形验证码识别
+     * <br />针对截至 2016-12-03 为止南昌大学教学一体化服务平台登录用的验证码
+     * <br />图形尺寸为 62*22
+     */
+    public static final int TYPE_5 = 5;
+    
+    /**
      * 识别指定文件的图形验证码
      * 
      * @param picFile
@@ -66,6 +73,8 @@ public class GraphicCTranslator {
             return GraphicC3Translator.getInstance().translate(picFile);
         case TYPE_4:
             return GraphicC4Translator.getInstance().translate(picFile);
+        case TYPE_5:
+            return GraphicC5Translator.getInstance().translate(picFile);
         }
         return "";
     }

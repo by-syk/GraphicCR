@@ -22,11 +22,12 @@ import com.by_syk.graphiccr.core.GraphicC1Translator;
 import com.by_syk.graphiccr.core.GraphicC2Translator;
 import com.by_syk.graphiccr.core.GraphicC3Translator;
 import com.by_syk.graphiccr.core.GraphicC4Translator;
+import com.by_syk.graphiccr.core.GraphicC5Translator;
 import com.by_syk.graphiccr.util.ExtraUtil;
 
 public class Test {
     public static void main(String[] args) {
-        testGraphicC4();
+        testGraphicC5();
     }
     
     private static void testGraphicC1() {
@@ -136,6 +137,32 @@ public class Test {
         System.out.println("DOWNLOAD TEST DONE");
 
         GraphicC4Translator translator = GraphicC4Translator.getInstance();
+        for (File file : testDir.listFiles()) {
+            String result = translator.translate(file);
+            file.renameTo(new File(file.getParentFile(), result + ".jpg"));
+            System.out.println("TRANSLATE " + result);
+        }
+        
+        System.out.println("TRANSLATE DONE");
+    }
+    
+    private static void testGraphicC5() {
+        File testDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/5/test");
+        
+        for (int i = 0; i < 100; ++i) {
+            ExtraUtil.downloadFile("http://218.64.56.18/jsxsd/verifycode.servlet?t=0.7339572516226678",
+                    new File(testDir, System.currentTimeMillis() + ".jpg"));
+            System.out.println("DOWNLOAD TEST " + (i + 1));
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        System.out.println("DOWNLOAD TEST DONE");
+
+        GraphicC5Translator translator = GraphicC5Translator.getInstance();
         for (File file : testDir.listFiles()) {
             String result = translator.translate(file);
             file.renameTo(new File(file.getParentFile(), result + ".jpg"));
