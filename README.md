@@ -43,6 +43,7 @@
 :smile: 字符亮度基本一致，阀值 `0.5`  
 :smile: 无字形变化，只含少数数字和小写字母  
 :smile: 每个字符相对位置固定  
+:smile: 有干扰线，但可忽略
 ![graphicc5](art/ps_graphicc5.png)
 
 
