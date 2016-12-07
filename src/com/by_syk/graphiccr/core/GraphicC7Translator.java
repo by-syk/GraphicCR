@@ -29,14 +29,14 @@ import javax.imageio.ImageIO;
 import com.by_syk.graphiccr.util.ExtraUtil;
 
 /**
- * 第5类图形验证码识别
- * <br />针对截至 2016-12-03 为止南昌大学教学一体化服务平台登录用的验证码
+ * 第7类图形验证码识别
+ * <br />针对截至 2016-12-12 为止青岛农业大学教学一体化服务平台登录用的验证码
  * <br />图形尺寸为 62*22
  * 
  * @author By_syk
  */
-public class GraphicC5Translator {
-    private static GraphicC5Translator translator = null;
+public class GraphicC7Translator {
+    private static GraphicC7Translator translator = null;
     
     private Map<BufferedImage, Character> trainMap = null;
     
@@ -59,11 +59,11 @@ public class GraphicC5Translator {
      */
     private static final int USELESS_COLOR = Color.WHITE.getRGB();
     
-    private GraphicC5Translator() {}
+    private GraphicC7Translator() {}
     
-    public static GraphicC5Translator getInstance() {
+    public static GraphicC7Translator getInstance() {
         if (translator == null) {
-            translator = new GraphicC5Translator();
+            translator = new GraphicC7Translator();
         }
         
         return translator;
@@ -116,14 +116,15 @@ public class GraphicC5Translator {
     private List<BufferedImage> split(BufferedImage img) throws Exception {
         List<BufferedImage> subImgs = new ArrayList<BufferedImage>();
         subImgs.add(img.getSubimage(3, 4, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(13, 4, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(23, 4, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(33, 4, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(16, 4, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(29, 4, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(42, 4, UNIT_W, UNIT_H));
         return subImgs;
     }
     
     /**
      * 取出训练数据
+     * （与第5类通用）
      * 
      * @return
      * @throws Exception
@@ -204,17 +205,25 @@ public class GraphicC5Translator {
     }
     
 //    public static void main(String[] args) {
-//        File testDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/5/raw");
+//        File testDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/7/raw");
 //        
-//        GraphicC5Translator translator = GraphicC5Translator.getInstance();
+//        GraphicC7Translator translator = GraphicC7Translator.getInstance();
 //        for (File file : testDir.listFiles()) {
 //            if (file.getName().contains("-2")) {
 //                continue;
 //            }
 //            try {
 //                BufferedImage img = translator.denoise(file);
-//                ImageIO.write(img, "JPG", new File(file.getParentFile(),
-//                        file.getName().split("\\.")[0] + "-2.jpg"));
+//                List<BufferedImage> imgs = translator.split(img);
+//                ImageIO.write(imgs.get(0), "JPG", new File(file.getParentFile(),
+//                        file.getName().split("\\.")[0] + "-2-0.jpg"));
+//                ImageIO.write(imgs.get(1), "JPG", new File(file.getParentFile(),
+//                        file.getName().split("\\.")[0] + "-2-1.jpg"));
+//                ImageIO.write(imgs.get(2), "JPG", new File(file.getParentFile(),
+//                        file.getName().split("\\.")[0] + "-2-2.jpg"));
+//                ImageIO.write(imgs.get(3), "JPG", new File(file.getParentFile(),
+//                        file.getName().split("\\.")[0] + "-2-3.jpg"));
+//                break;
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }

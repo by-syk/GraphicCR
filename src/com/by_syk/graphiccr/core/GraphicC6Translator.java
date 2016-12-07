@@ -29,21 +29,21 @@ import javax.imageio.ImageIO;
 import com.by_syk.graphiccr.util.ExtraUtil;
 
 /**
- * 第5类图形验证码识别
- * <br />针对截至 2016-12-03 为止南昌大学教学一体化服务平台登录用的验证码
- * <br />图形尺寸为 62*22
+ * 第6类图形验证码识别
+ * <br />针对截至 2016-12-07 为止安徽工业大学教务管理系统登录用的验证码
+ * <br />图形尺寸为 60*22
  * 
  * @author By_syk
  */
-public class GraphicC5Translator {
-    private static GraphicC5Translator translator = null;
+public class GraphicC6Translator {
+    private static GraphicC6Translator translator = null;
     
     private Map<BufferedImage, Character> trainMap = null;
     
     /**
      * 元字符宽度
      */
-    private static final int UNIT_W = 9;
+    private static final int UNIT_W = 8;
     /**
      * 元字符高度
      */
@@ -59,11 +59,11 @@ public class GraphicC5Translator {
      */
     private static final int USELESS_COLOR = Color.WHITE.getRGB();
     
-    private GraphicC5Translator() {}
+    private GraphicC6Translator() {}
     
-    public static GraphicC5Translator getInstance() {
+    public static GraphicC6Translator getInstance() {
         if (translator == null) {
-            translator = new GraphicC5Translator();
+            translator = new GraphicC6Translator();
         }
         
         return translator;
@@ -71,7 +71,7 @@ public class GraphicC5Translator {
     
     /**
      * 目标像素判断
-     * <br />（基于亮度）
+     * <br />（基于饱和度）
      * 
      * @param colorInt
      * @return
@@ -80,7 +80,7 @@ public class GraphicC5Translator {
         Color color = new Color(colorInt);
         float[] hsb = new float[3];
         Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), hsb);
-        return hsb[2] < 0.5f; // 亮度
+        return hsb[1] > 0.2f; // 饱和度
     }
     
     /**
@@ -115,10 +115,11 @@ public class GraphicC5Translator {
      */
     private List<BufferedImage> split(BufferedImage img) throws Exception {
         List<BufferedImage> subImgs = new ArrayList<BufferedImage>();
-        subImgs.add(img.getSubimage(3, 4, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(13, 4, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(23, 4, UNIT_W, UNIT_H));
-        subImgs.add(img.getSubimage(33, 4, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(5, 5, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(14, 5, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(23, 5, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(32, 5, UNIT_W, UNIT_H));
+        subImgs.add(img.getSubimage(41, 5, UNIT_W, UNIT_H));
         return subImgs;
     }
     
@@ -132,13 +133,13 @@ public class GraphicC5Translator {
         if (trainMap == null) {
             trainMap = new HashMap<>();
             String trainLog = ExtraUtil.readFile(this.getClass()
-                    .getResourceAsStream("/resources/img/5/5.txt"));
+                    .getResourceAsStream("/resources/img/6/6.txt"));
             if (trainLog == null) {
                 return trainMap;
             }
             for (String name : trainLog.split("\n")) {
                 trainMap.put(ImageIO.read(this.getClass()
-                        .getResourceAsStream("/resources/img/5/" + name)), name.charAt(0));
+                        .getResourceAsStream("/resources/img/6/" + name)), name.charAt(0));
             }
         }
         
@@ -204,17 +205,16 @@ public class GraphicC5Translator {
     }
     
 //    public static void main(String[] args) {
-//        File testDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/5/raw");
-//        
-//        GraphicC5Translator translator = GraphicC5Translator.getInstance();
+//        GraphicC6Translator translator = GraphicC6Translator.getInstance();
+//        File testDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/6/raw");
 //        for (File file : testDir.listFiles()) {
 //            if (file.getName().contains("-2")) {
 //                continue;
 //            }
 //            try {
 //                BufferedImage img = translator.denoise(file);
-//                ImageIO.write(img, "JPG", new File(file.getParentFile(),
-//                        file.getName().split("\\.")[0] + "-2.jpg"));
+//                ImageIO.write(img, "PNG", new File(file.getParentFile(),
+//                        file.getName().split("\\.")[0] + "-2.gif"));
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }

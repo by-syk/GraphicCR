@@ -57,6 +57,20 @@ public class GraphicCTranslator {
     public static final int TYPE_5 = 5;
     
     /**
+     * 第6类图形验证码识别
+     * <br />针对截至 2016-12-07 为止安徽工业大学教务管理系统登录用的验证码
+     * <br />图形尺寸为 60*22
+     */
+    public static final int TYPE_6 = 6;
+    
+    /**
+     * 第7类图形验证码识别
+     * <br />针对截至 2016-12-12 为止青岛农业大学教学一体化服务平台登录用的验证码
+     * <br />图形尺寸为 62*22
+     */
+    public static final int TYPE_7 = 7;
+    
+    /**
      * 识别指定文件的图形验证码
      * 
      * @param picFile
@@ -75,6 +89,10 @@ public class GraphicCTranslator {
             return GraphicC4Translator.getInstance().translate(picFile);
         case TYPE_5:
             return GraphicC5Translator.getInstance().translate(picFile);
+        case TYPE_6:
+            return GraphicC6Translator.getInstance().translate(picFile);
+        case TYPE_7:
+            return GraphicC7Translator.getInstance().translate(picFile);
         }
         return "";
     }
