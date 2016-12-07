@@ -10,6 +10,7 @@
 | 第3类 | [![bbmc](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx)](http://211.70.128.23/JWWEB/sys/ValidateCode.aspx) | [蚌埠医学院教务网络管理系统](http://211.70.128.23/JWWEB) | 91 / 100 = **91%**，单：389 / 400 = 97% |
 | 第4类 | [![sdjtu](http://211.64.127.221/validateCodeAction.do?random=0.44780089727138211)](http://211.64.127.221/validateCodeAction.do?random=0.44780089727138211) | [山东交通学院综合教务系统](http://211.64.127.221) | 97 / 100 = **97%**，单：397 / 400 = 99% |
 | 第5类 | [![ncu](http://218.64.56.18/jsxsd/verifycode.servlet?t=0.7339572516226678)](http://218.64.56.18/jsxsd/verifycode.servlet?t=0.7339572516226678) | [南昌大学教学一体化服务平台](http://218.64.56.18/jsxsd) | 100 / 100 = **100%**，单：400 / 400 = 100% |
+| 第6类 | [![ahut](http://211.70.149.135:88/CheckCode.aspx)](http://211.70.149.135:88/CheckCode.aspx) | [安徽工业大学教务管理系统](http://211.70.149.135:88) | 100 / 100 = **100%**，单：400 / 400 = 100% |
 
 图形样本特征分析：
 * 第1类  
@@ -45,6 +46,12 @@
 :smile: 每个字符相对位置固定  
 :smile: 有干扰线，但可忽略
 ![graphicc5](art/ps_graphicc5.png)
+* 第6类  
+:smile: 字符数固定  
+:smile: 字符饱和度基本一致，阀值 `0.2`  
+:smile: 无字形变化，只含数字  
+:smile: 每个字符位置固定  
+![graphicc6](art/ps_graphicc6.png)
 
 
 ### 开始使用

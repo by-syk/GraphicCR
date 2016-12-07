@@ -23,11 +23,12 @@ import com.by_syk.graphiccr.core.GraphicC2Translator;
 import com.by_syk.graphiccr.core.GraphicC3Translator;
 import com.by_syk.graphiccr.core.GraphicC4Translator;
 import com.by_syk.graphiccr.core.GraphicC5Translator;
+import com.by_syk.graphiccr.core.GraphicC6Translator;
 import com.by_syk.graphiccr.util.ExtraUtil;
 
 public class Test {
     public static void main(String[] args) {
-        testGraphicC5();
+        testGraphicC6();
     }
     
     private static void testGraphicC1() {
@@ -66,7 +67,7 @@ public class Test {
         
         System.out.println("TRAIN DONE");
 
-        for (int i = 0; i < 80; ++i) {
+        for (int i = 0; i < 10; ++i) {
             ExtraUtil.downloadFile("http://61.139.105.138/CheckCode.aspx",
                     new File(testDir, System.currentTimeMillis() + ".gif"));
             System.out.println("DOWNLOAD TEST " + (i + 1));
@@ -166,6 +167,32 @@ public class Test {
         for (File file : testDir.listFiles()) {
             String result = translator.translate(file);
             file.renameTo(new File(file.getParentFile(), result + ".jpg"));
+            System.out.println("TRANSLATE " + result);
+        }
+        
+        System.out.println("TRANSLATE DONE");
+    }
+    
+    private static void testGraphicC6() {
+        File testDir = new File("E:/JavaProjects/GraphicCR/reserve/GraphicC/6/test");
+        
+        for (int i = 0; i < 10; ++i) {
+            ExtraUtil.downloadFile("http://211.70.149.135:88/CheckCode.aspx",
+                    new File(testDir, System.currentTimeMillis() + ".gif"));
+            System.out.println("DOWNLOAD TEST " + (i + 1));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        System.out.println("DOWNLOAD TEST DONE");
+
+        GraphicC6Translator translator = GraphicC6Translator.getInstance();
+        for (File file : testDir.listFiles()) {
+            String result = translator.translate(file);
+            file.renameTo(new File(file.getParentFile(), result + ".gif"));
             System.out.println("TRANSLATE " + result);
         }
         
