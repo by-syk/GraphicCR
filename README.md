@@ -53,6 +53,13 @@
 :smile: 无字形变化，只含数字  
 :smile: 每个字符位置固定  
 ![graphicc6](art/ps_graphicc6.png)
+* 第7类  
+:smile: 字符数固定  
+:smile: 字符亮度基本一致，阀值 `0.5`  
+:smile: 无字形变化，只含少数数字和小写字母  
+:smile: 每个字符相对位置固定  
+:smile: 有干扰线，但可忽略
+![graphicc7](art/ps_graphicc7.png)
 
 
 ### 开始使用
